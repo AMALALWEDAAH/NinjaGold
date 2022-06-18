@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninja Gold</title>
+    <style>
+        .boxs{
+            display: flex;
+        }
+        .box{
+            margin: 2%;
+            justify-content:space-evenly;
+            flex: 1 25%;
+            border: 2px solid black;
+            text-align: center;
+            font-size: 20px;
+            padding: 5%;
+        }
+        #Ygold{
+            border: 2px solid black;
+            padding: auto 5%;
+            font-size: 15px;
+        }
+        div#scroll {
+                width: 90%;
+                height: 80px;
+                overflow-x: hidden;
+                overflow-y:scroll;
+                text-align:justify;
+            }
+    </style>
+</head>
+<body>
+    <div class="boxs">
+        <label for="ygold">Your Gold:</label>
+        <div id="ygold">
+            
+            <p>{{request.session.ygold}}</p>
+            <a href="reset"><p>Play Again</p></a>
+        </div>
+    </div>
+    <div class="boxs">
+        <div class="box"> <p>Farm</p>
+            <p>(earns 10-20 gold)</p>
+            <form action="process_money" method="post">
+                {%csrf_token%}
+                <input type="hidden" id="gold1" name="gold" value="1487">
+                <button name="farm">Find Gold!</button></form>
+        </div>
+        <div class="box"><p>Cave</p>
+            <p>(earns 10-20 gold)</p>
+            <form action="process_money" method="post">
+                {%csrf_token%}
+                <input type="hidden" id="gold2" name="gold" value="2487">
+                <button name="cave">Find Gold!</button></form></div>
+        <div class="box"><p>House</p>
+            <p>(earns 10-20 gold)</p>
+            <form action="process_money" method="post">
+                {%csrf_token%}
+                <input type="hidden" id="gold3" name="gold" value="3487">
+                <button name="house">Find Gold!</button></form></div>
+        <div class="box"><p>Quest</p>
+            <p>(earns 0-50 gold)</p>
+            <form action="process_money" method="post">
+                {%csrf_token%}
+                <input type="hidden" id="gold4" name="gold" value="4487">
+                <button name="quest">Find Gold!</button></form>
+            </div>
+    </div>
+    <div><label for="activities">activities:</label>
+        <div id="scroll">
+            {%for t in request.session.transactions%}
+                <p>{{t}}</p>
+            {%endfor%}
+        </div>
+    </div>
+</body>
+</html>
