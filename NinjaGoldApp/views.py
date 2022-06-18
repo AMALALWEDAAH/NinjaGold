@@ -16,7 +16,7 @@ def process(request):
             trans =random.randint(-50,50)
             request.session['ygold']+=trans 
             if trans < 0 :
-                transactions.append(f" You entered a quest and takes {trans} from your gold.({strftime('%Y-%m-%d %H:%M %p', gmtime())})")
+                transactions.append(f" You failed a quest and lost {trans} gold.({strftime('%Y-%m-%d %H:%M %p', gmtime())})")
             else:
                 transactions.append(f" You entered a quest and earned {trans} gold.({strftime('%Y-%m-%d %H:%M %p', gmtime())})")
         elif request.POST['gold'] == '1487':
